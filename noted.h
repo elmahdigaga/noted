@@ -16,6 +16,21 @@ public:
     ~Noted();
 
 private:
+    void newFile();
+    void open();
+    void save();
+    void saveAs();
+    void print();
+    void exit();
+    void copy();
+    void paste();
+    void cut();
+    void undo();
+    void redo();
+    void about();
+
+private:
     Ui::Noted *ui;
+    QString currentFile;
 };
 #endif // NOTED_H
