@@ -15,19 +15,26 @@ public:
     Noted(QWidget *parent = nullptr);
     ~Noted();
 
-private:
-    void newFile();
-    void open();
-    void save();
-    void saveAs();
-    void print();
-    void exit();
-    void copy();
-    void paste();
-    void cut();
-    void undo();
-    void redo();
-    void about();
+private slots:
+    void on_newFile_triggered();
+
+    void on_open_triggered();
+
+    void on_save_triggered();
+
+    void on_saveAs_triggered();
+
+    void on_print_triggered();
+
+    void on_copy_triggered();
+
+    void on_cut_triggered();
+
+    void on_paste_triggered();
+
+    void on_undo_triggered();
+
+    void on_redo_triggered();
 
 private:
     Ui::Noted *ui;
