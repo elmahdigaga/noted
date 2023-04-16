@@ -3,11 +3,16 @@ Noted is a cross-platform text editor built with C++ and the Qt framework, desig
 
 ## Features
 
+### Completed
+
 - [x] **File Creation:** Users can create new files within the text editor.
 - [x] **File Loading:** Users can load existing files into the text editor.
 - [x] **File Editing:** The text editor allows basic text editing capabilities, such as inserting, deleting, and selecting text.
 - [x] **File Saving:** Users can save changes made to their files.
 - [x] **Undo and Redo:** The text editor supports undo and redo functionality to allow users to easily revert changes.
+
+### To Do
+
 - [ ] **Syntax Highlighting:** The text editor highlights syntax to make it easier for users to read and understand their code.
 - [ ] **Autocomplete:** The text editor suggests code completions as the user types.
 - [ ] **Line Numbering:** The text editor displays line numbers to allow users to easily reference specific lines in their code.
