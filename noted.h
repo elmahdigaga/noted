@@ -24,8 +24,6 @@ private slots:
 
     void on_saveAs_triggered();
 
-    void on_print_triggered();
-
     void on_copy_triggered();
 
     void on_cut_triggered();

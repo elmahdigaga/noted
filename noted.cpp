@@ -5,8 +5,6 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
-#include <QPrinter>
-#include <QPrintDialog>
 
 Noted::Noted(QWidget *parent)
     : QMainWindow(parent)
@@ -15,16 +13,12 @@ Noted::Noted(QWidget *parent)
     ui->setupUi(this);
     this->setCentralWidget(ui->textEdit);
 
-    #if !defined(QT_PRINTSUPPORT_LIB) || !QT_CONFIG(printer)
-        ui->print->setEnabled(false);
-    #endif
-/*
     #if !QT_CONFIG(clipboard)
         ui->copy->setEnabled(false);
         ui->cut->setEnabled(false);
         ui->paste->setEnabled(false);
     #endif
-*/
+
 }
 
 Noted::~Noted()
@@ -93,20 +87,6 @@ void Noted::on_saveAs_triggered()
     QString text = ui->textEdit->toPlainText();
     out << text;
     file.close();
-}
-
-
-void Noted::on_print_triggered()
-{
-    #if defined(QT_PRINTSUPPORT_LIB) && QT_CONFIG(printer)
-        QPrinter printDev;
-    #if QT_CONFIG(printdialog)
-        QPrintDialog dialog(&printDev, this);
-        if (dialog.exec() == QDialog::Rejected)
-            return;
-    #endif // QT_CONFIG(printdialog)
-        ui->textEdit->print(&printDev);
-    #endif // QT_CONFIG(printer)
 }
 
 
