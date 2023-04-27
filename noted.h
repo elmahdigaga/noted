@@ -43,6 +43,7 @@ private slots:
     void on_paste_triggered();
     void on_undo_triggered();
     void on_redo_triggered();
+    void on_QTreeView_clicked(const QModelIndex& index);
 
 private:
     Ui::Noted *ui;

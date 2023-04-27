@@ -19,6 +19,8 @@ Noted::Noted(QWidget *parent)
         ui->paste->setEnabled(false);
     #endif
 
+    connect(ui->treeView, &QTreeView::clicked, this, &Noted::on_QTreeView_clicked);
+
     model = new QFileSystemModel(this);
     model->setReadOnly(false);
     model->setFilter(QDir::AllEntries | QDir::Hidden | QDir::System);
@@ -40,7 +42,6 @@ void Noted::on_newFile_triggered()
     ui->textEdit->setText(QString());
     setWindowTitle("Noted");
 }
-
 
 void Noted::on_openFile_triggered()
 {
@@ -69,7 +70,6 @@ void Noted::on_openFolder_triggered()
     setRootFolder();
 }
 
-
 void Noted::on_save_triggered()
 {
     QString fileName;
@@ -91,7 +91,6 @@ void Noted::on_save_triggered()
     file.close();
 }
 
-
 void Noted::on_saveAs_triggered()
 {
     QString fileName = QFileDialog::getSaveFileName(this, "Save as");
@@ -108,14 +107,12 @@ void Noted::on_saveAs_triggered()
     file.close();
 }
 
-
 void Noted::on_copy_triggered()
 {
 #if QT_CONFIG(clipboard)
     ui->textEdit->copy();
 #endif
 }
-
 
 void Noted::on_cut_triggered()
 {
@@ -124,7 +121,6 @@ void Noted::on_cut_triggered()
 #endif
 }
 
-
 void Noted::on_paste_triggered()
 {
 #if QT_CONFIG(clipboard)
@@ -132,12 +128,10 @@ void Noted::on_paste_triggered()
 #endif
 }
 
-
 void Noted::on_undo_triggered()
 {
     ui->textEdit->undo();
 }
-
 
 void Noted::on_redo_triggered()
 {
@@ -153,3 +147,30 @@ void Noted::setRootFolder() {
     ui->treeView->setRootIndex(model->index(currentFolderPath));
 }
 
+void Noted::on_QTreeView_clicked(const QModelIndex& index)
+{
+    // Check if the index is valid and it represents a file (not a directory)
+    if (!index.isValid() || model->isDir(index))
+        return;
+
+    // Get the file path from the index
+    QString filePath = model->filePath(index);
+
+    // load the contents of the file onto the text edit
+    QFile file(filePath);
+    currentFile = filePath;
+    if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
+        QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
+        return;
+    }
+    setWindowTitle(filePath);
+    QTextStream in(&file);
+    QString text = in.readAll();
+    ui->textEdit->setText(text);
+
+    QFileInfo fileInfo(file);
+    currentFolderPath = fileInfo.dir().path();
+    setRootFolder();
+
+    file.close();
+}
