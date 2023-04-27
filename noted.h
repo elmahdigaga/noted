@@ -7,23 +7,7 @@
 QT_BEGIN_NAMESPACE
 namespace Ui { class Noted; }
 QT_END_NAMESPACE
-/*
-class FileSystemModel : public QFileSystemModel {
-public:
-    FileSystemModel(QObject *parent = nullptr) : QFileSystemModel(parent) {}
 
-    Qt::ItemFlags flags(const QModelIndex &index) const override {
-        return QFileSystemModel::flags(index) | Qt::ItemIsEditable;
-    }
-
-    QVariant data(const QModelIndex &index, int role) const override {
-        if(role == Qt::DisplayRole && index.column() == 0) {
-            return QFileInfo(QFileSystemModel::data(index, role).toString()).fileName();
-        }
-        return QFileSystemModel::data(index, role);
-    }
-};
-*/
 class Noted : public QMainWindow
 {
     Q_OBJECT
@@ -52,5 +36,6 @@ private:
     QFileSystemModel *model;
 
     void setRootFolder();
+    void loadFile(const QString fileName);
 };
 #endif // NOTED_H

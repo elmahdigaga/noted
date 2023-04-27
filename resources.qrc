@@ -1,15 +1,16 @@
 <RCC>
-    <qresource prefix="/icons">
+    <qresource prefix="/icons"/>
+    <qresource prefix="/">
         <file>icons/copy.png</file>
         <file>icons/cut.png</file>
         <file>icons/newFile.png</file>
+        <file>icons/openFile.png</file>
+        <file>icons/openFolder.png</file>
         <file>icons/paste.png</file>
         <file>icons/print.png</file>
         <file>icons/redo.png</file>
         <file>icons/save.png</file>
         <file>icons/saveAs.png</file>
         <file>icons/undo.png</file>
-        <file>icons/openFile.png</file>
-        <file>icons/openFolder.png</file>
     </qresource>
 </RCC>

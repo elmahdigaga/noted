@@ -46,22 +46,7 @@ void Noted::on_newFile_triggered()
 void Noted::on_openFile_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(this, "Open a file");
-    QFile file(fileName);
-    currentFile = fileName;
-    if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
-        QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
-        return;
-    }
-    setWindowTitle(fileName);
-    QTextStream in(&file);
-    QString text = in.readAll();
-    ui->textEdit->setText(text);
-
-    QFileInfo fileInfo(file);
-    currentFolderPath = fileInfo.dir().path();
-    setRootFolder();
-
-    file.close();
+    loadFile(fileName);
 }
 
 void Noted::on_openFolder_triggered()
@@ -138,15 +123,6 @@ void Noted::on_redo_triggered()
     ui->textEdit->redo();
 }
 
-void Noted::setRootFolder() {
-    if(currentFolderPath.isEmpty()) {
-        QMessageBox::warning(this, "Warning", "Cannot open folder");
-        return;
-    }
-    model->setRootPath(currentFolderPath);
-    ui->treeView->setRootIndex(model->index(currentFolderPath));
-}
-
 void Noted::on_QTreeView_clicked(const QModelIndex& index)
 {
     // Check if the index is valid and it represents a file (not a directory)
@@ -157,13 +133,26 @@ void Noted::on_QTreeView_clicked(const QModelIndex& index)
     QString filePath = model->filePath(index);
 
     // load the contents of the file onto the text edit
-    QFile file(filePath);
-    currentFile = filePath;
+    loadFile(filePath);
+}
+
+void Noted::setRootFolder() {
+    if(currentFolderPath.isEmpty()) {
+        QMessageBox::warning(this, "Warning", "Cannot open folder");
+        return;
+    }
+    model->setRootPath(currentFolderPath);
+    ui->treeView->setRootIndex(model->index(currentFolderPath));
+}
+
+void Noted::loadFile(const QString fileName) {
+    QFile file(fileName);
+    currentFile = fileName;
     if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
         QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
         return;
     }
-    setWindowTitle(filePath);
+    setWindowTitle(fileName);
     QTextStream in(&file);
     QString text = in.readAll();
     ui->textEdit->setText(text);

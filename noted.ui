@@ -93,7 +93,7 @@
   <action name="newFile">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/newFile.png</normaloff>:/icons/icons/newFile.png</iconset>
+     <normaloff>:/icons/newFile.png</normaloff>:/icons/newFile.png</iconset>
    </property>
    <property name="text">
     <string>New</string>
@@ -108,7 +108,7 @@
   <action name="openFile">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/openFile.png</normaloff>:/icons/icons/openFile.png</iconset>
+     <normaloff>:/icons/openFile.png</normaloff>:/icons/openFile.png</iconset>
    </property>
    <property name="text">
     <string>Open file</string>
@@ -123,7 +123,7 @@
   <action name="save">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/save.png</normaloff>:/icons/icons/save.png</iconset>
+     <normaloff>:/icons/save.png</normaloff>:/icons/save.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -138,7 +138,7 @@
   <action name="saveAs">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/saveAs.png</normaloff>:/icons/icons/saveAs.png</iconset>
+     <normaloff>:/icons/saveAs.png</normaloff>:/icons/saveAs.png</iconset>
    </property>
    <property name="text">
     <string>Save As</string>
@@ -153,7 +153,7 @@
   <action name="copy">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/copy.png</normaloff>:/icons/icons/copy.png</iconset>
+     <normaloff>:/icons/copy.png</normaloff>:/icons/copy.png</iconset>
    </property>
    <property name="text">
     <string>Copy</string>
@@ -168,7 +168,7 @@
   <action name="cut">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/cut.png</normaloff>:/icons/icons/cut.png</iconset>
+     <normaloff>:/icons/cut.png</normaloff>:/icons/cut.png</iconset>
    </property>
    <property name="text">
     <string>Cut</string>
@@ -183,7 +183,7 @@
   <action name="undo">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/undo.png</normaloff>:/icons/icons/undo.png</iconset>
+     <normaloff>:/icons/undo.png</normaloff>:/icons/undo.png</iconset>
    </property>
    <property name="text">
     <string>Undo</string>
@@ -198,7 +198,7 @@
   <action name="redo">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/redo.png</normaloff>:/icons/icons/redo.png</iconset>
+     <normaloff>:/icons/redo.png</normaloff>:/icons/redo.png</iconset>
    </property>
    <property name="text">
     <string>Redo</string>
@@ -213,7 +213,7 @@
   <action name="paste">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/paste.png</normaloff>:/icons/icons/paste.png</iconset>
+     <normaloff>:/icons/paste.png</normaloff>:/icons/paste.png</iconset>
    </property>
    <property name="text">
     <string>Paste</string>
@@ -228,7 +228,7 @@
   <action name="openFolder">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/openFolder.png</normaloff>:/icons/icons/openFolder.png</iconset>
+     <normaloff>:/icons/openFolder.png</normaloff>:/icons/openFolder.png</iconset>
    </property>
    <property name="text">
     <string>Open folder</string>
