@@ -28,14 +28,15 @@ private slots:
     void on_undo_triggered();
     void on_redo_triggered();
     void on_QTreeView_clicked(const QModelIndex& index);
+    void on_text_changed();
 
 private:
     Ui::Noted *ui;
-    QString currentFile;
+    QString currentFilePath;
     QString currentFolderPath;
     QFileSystemModel *model;
 
     void setRootFolder();
-    void loadFile(const QString fileName);
+    void loadFile(const QString filePath);
 };
 #endif // NOTED_H

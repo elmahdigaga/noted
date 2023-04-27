@@ -20,6 +20,7 @@ Noted::Noted(QWidget *parent)
     #endif
 
     connect(ui->treeView, &QTreeView::clicked, this, &Noted::on_QTreeView_clicked);
+    connect(ui->textEdit, &QTextEdit::textChanged, this, &Noted::on_text_changed);
 
     model = new QFileSystemModel(this);
     model->setReadOnly(false);
@@ -38,15 +39,15 @@ Noted::~Noted()
 
 void Noted::on_newFile_triggered()
 {
-    currentFile.clear();
+    currentFilePath.clear();
     ui->textEdit->setText(QString());
     setWindowTitle("Noted");
 }
 
 void Noted::on_openFile_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, "Open a file");
-    loadFile(fileName);
+    QString filePath = QFileDialog::getOpenFileName(this, "Open a file");
+    loadFile(filePath);
 }
 
 void Noted::on_openFolder_triggered()
@@ -57,19 +58,19 @@ void Noted::on_openFolder_triggered()
 
 void Noted::on_save_triggered()
 {
-    QString fileName;
-    if(currentFile.isEmpty()) {
-        fileName = QFileDialog::getSaveFileName(this, "Save");
-        currentFile = fileName;
+    QString filePath;
+    if(currentFilePath.isEmpty()) {
+        filePath = QFileDialog::getSaveFileName(this, "Save");
+        currentFilePath = filePath;
     } else {
-        fileName = currentFile;
+        filePath = currentFilePath;
     }
-    QFile file(fileName);
+    QFile file(filePath);
     if(!file.open(QIODevice::WriteOnly | QFile::Text)) {
         QMessageBox::warning(this, "Warning", "Cannot save file: " + file.errorString());
         return;
     }
-    setWindowTitle(fileName);
+    setWindowTitle(filePath);
     QTextStream out(&file);
     QString text = ui->textEdit->toPlainText();
     out << text;
@@ -78,14 +79,14 @@ void Noted::on_save_triggered()
 
 void Noted::on_saveAs_triggered()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, "Save as");
-    QFile file(fileName);
+    QString filePath = QFileDialog::getSaveFileName(this, "Save as");
+    QFile file(filePath);
     if(!file.open(QFile::WriteOnly | QFile::Text)) {
         QMessageBox::warning(this, "Warning", "Cannont save file: " + file.errorString());
         return;
     }
-    currentFile = fileName;
-    setWindowTitle(fileName);
+    currentFilePath = filePath;
+    setWindowTitle(filePath);
     QTextStream out(&file);
     QString text = ui->textEdit->toPlainText();
     out << text;
@@ -136,7 +137,14 @@ void Noted::on_QTreeView_clicked(const QModelIndex& index)
     loadFile(filePath);
 }
 
-void Noted::setRootFolder() {
+void Noted::on_text_changed()
+{
+    QString title = currentFilePath + " *";
+    setWindowTitle(title);
+}
+
+void Noted::setRootFolder()
+{
     if(currentFolderPath.isEmpty()) {
         QMessageBox::warning(this, "Warning", "Cannot open folder");
         return;
@@ -145,14 +153,14 @@ void Noted::setRootFolder() {
     ui->treeView->setRootIndex(model->index(currentFolderPath));
 }
 
-void Noted::loadFile(const QString fileName) {
-    QFile file(fileName);
-    currentFile = fileName;
+void Noted::loadFile(const QString filePath) {
+    QFile file(filePath);
+    currentFilePath = filePath;
     if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
         QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
         return;
     }
-    setWindowTitle(fileName);
+    setWindowTitle(filePath);
     QTextStream in(&file);
     QString text = in.readAll();
     ui->textEdit->setText(text);
