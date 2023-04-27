@@ -7,16 +7,30 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>602</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Noted</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
-     <widget class="QTextEdit" name="textEdit"/>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item alignment="Qt::AlignLeft">
+       <widget class="QTreeView" name="treeView">
+        <property name="minimumSize">
+         <size>
+          <width>256</width>
+          <height>495</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextEdit" name="textEdit"/>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -34,9 +48,10 @@
      <string>File</string>
     </property>
     <addaction name="newFile"/>
-    <addaction name="open"/>
+    <addaction name="openFile"/>
     <addaction name="save"/>
     <addaction name="saveAs"/>
+    <addaction name="openFolder"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -63,7 +78,8 @@
     <bool>false</bool>
    </attribute>
    <addaction name="newFile"/>
-   <addaction name="open"/>
+   <addaction name="openFile"/>
+   <addaction name="openFolder"/>
    <addaction name="save"/>
    <addaction name="saveAs"/>
    <addaction name="separator"/>
@@ -89,16 +105,16 @@
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="open">
+  <action name="openFile">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/icons/icons/open.png</normaloff>:/icons/icons/open.png</iconset>
+     <normaloff>:/icons/icons/openFile.png</normaloff>:/icons/icons/openFile.png</iconset>
    </property>
    <property name="text">
-    <string>Open</string>
+    <string>Open file</string>
    </property>
    <property name="toolTip">
-    <string>Open (Ctrl+O)</string>
+    <string>Open file (Ctrl+O)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -207,6 +223,21 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="openFolder">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/icons/openFolder.png</normaloff>:/icons/icons/openFolder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open folder</string>
+   </property>
+   <property name="toolTip">
+    <string>Open folder (Ctrl+K)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
    </property>
   </action>
  </widget>
