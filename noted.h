@@ -27,8 +27,8 @@ private slots:
     void on_paste_triggered();
     void on_undo_triggered();
     void on_redo_triggered();
-    void on_QTreeView_clicked(const QModelIndex& index);
-    void on_text_changed();
+    void on_treeView_clicked(const QModelIndex &index);
+    void on_textEdit_textChanged();
 
 private:
     Ui::Noted *ui;

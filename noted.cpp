@@ -19,9 +19,6 @@ Noted::Noted(QWidget *parent)
         ui->paste->setEnabled(false);
     #endif
 
-    connect(ui->treeView, &QTreeView::clicked, this, &Noted::on_QTreeView_clicked);
-    connect(ui->textEdit, &QTextEdit::textChanged, this, &Noted::on_text_changed);
-
     model = new QFileSystemModel(this);
     model->setReadOnly(false);
     model->setFilter(QDir::AllEntries | QDir::Hidden | QDir::System);
@@ -124,7 +121,7 @@ void Noted::on_redo_triggered()
     ui->textEdit->redo();
 }
 
-void Noted::on_QTreeView_clicked(const QModelIndex& index)
+void Noted::on_treeView_clicked(const QModelIndex &index)
 {
     // Check if the index is valid and it represents a file (not a directory)
     if (!index.isValid() || model->isDir(index))
@@ -137,7 +134,8 @@ void Noted::on_QTreeView_clicked(const QModelIndex& index)
     loadFile(filePath);
 }
 
-void Noted::on_text_changed()
+
+void Noted::on_textEdit_textChanged()
 {
     QString title = currentFilePath + " *";
     setWindowTitle(title);
