@@ -17,7 +17,7 @@
    <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
-      <item alignment="Qt::AlignLeft">
+      <item>
        <widget class="QTreeView" name="treeView">
         <property name="minimumSize">
          <size>
