@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>602</height>
+    <height>620</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,21 +16,29 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item alignment="Qt::AlignLeft">
-       <widget class="QTreeView" name="treeView">
-        <property name="minimumSize">
-         <size>
-          <width>256</width>
-          <height>495</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QTextEdit" name="textEdit"/>
-      </item>
-     </layout>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="welcomePage"/>
+      <widget class="QWidget" name="editorPage">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item alignment="Qt::AlignLeft">
+         <widget class="QTreeView" name="treeView">
+          <property name="minimumSize">
+           <size>
+            <width>256</width>
+            <height>495</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="textEdit"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
