@@ -21,7 +21,7 @@ Noted::Noted(QWidget *parent)
 
     model = new QFileSystemModel(this);
     model->setReadOnly(false);
-    model->setFilter(QDir::AllEntries | QDir::Hidden | QDir::System);
+    model->setFilter(QDir::AllEntries | QDir::Hidden | QDir::System | QDir::NoDotAndDotDot);
     ui->treeView->setModel(model);
     ui->treeView->hideColumn(1);
     ui->treeView->hideColumn(2);
