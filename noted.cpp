@@ -19,6 +19,8 @@ Noted::Noted(QWidget *parent)
         ui->paste->setEnabled(false);
     #endif
 
+    ui->stackedWidget->setCurrentWidget(ui->welcomePage);
+
     model = new QFileSystemModel(this);
     model->setReadOnly(false);
     model->setFilter(QDir::AllEntries | QDir::Hidden | QDir::System | QDir::NoDotAndDotDot);
@@ -26,6 +28,7 @@ Noted::Noted(QWidget *parent)
     ui->treeView->hideColumn(1);
     ui->treeView->hideColumn(2);
     ui->treeView->hideColumn(3);
+    setWindowTitle("Welcome - Noted");
 }
 
 Noted::~Noted()
@@ -169,3 +172,24 @@ void Noted::loadFile(const QString filePath) {
 
     file.close();
 }
+
+void Noted::on_newFilePushButton_clicked()
+{
+    on_newFile_triggered();
+    ui->stackedWidget->setCurrentWidget(ui->editorPage);
+}
+
+
+void Noted::on_openFilePushButton_clicked()
+{
+    on_openFile_triggered();
+    ui->stackedWidget->setCurrentWidget(ui->editorPage);
+}
+
+
+void Noted::on_openFolderPushButton_clicked()
+{
+    on_openFolder_triggered();
+    ui->stackedWidget->setCurrentWidget(ui->editorPage);
+}
+

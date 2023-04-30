@@ -29,6 +29,9 @@ private slots:
     void on_redo_triggered();
     void on_treeView_clicked(const QModelIndex &index);
     void on_textEdit_textChanged();
+    void on_newFilePushButton_clicked();
+    void on_openFilePushButton_clicked();
+    void on_openFolderPushButton_clicked();
 
 private:
     Ui::Noted *ui;
